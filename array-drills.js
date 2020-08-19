@@ -117,7 +117,10 @@ function twoD(arr) {
             arr[0][c] = 0;
     }
     return arr
-    
+}
+
+function isRotation(str1,str2) {
+    return (str1.length == str2.length && ((str1 + str1).indexOf(str2) != -1))
 }
 
 function main() {
@@ -146,6 +149,10 @@ function main() {
     [1,1,1,1,1],
     [1,0,1,1,1],
     [1,1,1,1,1]]))
+
+    console.log(isRotation("amazon", "azonam"))
+    console.log(isRotation("amazon", "azonma"))
+
 }
 
 main();
