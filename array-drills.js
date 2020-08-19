@@ -87,6 +87,37 @@ function products(arr) {
 
 function twoD(arr) {
     let firstRow = false
+    let row = arr.length
+    let col = arr[0].length
+
+    for (let i = 0; i < col; i++) {
+        if (arr[0][i] === 0)
+        firstRow = true
+    }
+
+    for (let r=0; r<row; r++){
+        for (let c=0; c<col; c++){
+            if (arr[r][c] == 0)
+                arr[0][c] = 0;
+        }
+    }
+    for (let r=1; r<row; r++){
+        let rowZero = false;
+        for (let c=0; c<col; c++){
+            if (arr[r][c] == 0)
+                rowZero = true;
+        }
+        for (let c=0; c<col; c++){
+            if (rowZero || arr[0][c] == 0)
+                arr[r][c] = 0;
+        }
+    }
+    for (let c=0; c<col; c++){
+        if (firstRow)
+            arr[0][c] = 0;
+    }
+    return arr
+    
 }
 
 function main() {
