@@ -13,7 +13,6 @@ function removeAll(arr) {
 }
 
 function maxSum(arr) {
-
   let currMax = 0;
   let ansMax = 0;
 
@@ -22,7 +21,6 @@ function maxSum(arr) {
     if (currMax < ansMax) {
       currMax = ansMax;
     }
-
     if (ansMax < 0) {
       ansMax = 0;
     }
@@ -42,36 +40,35 @@ function mergeArray(lArr, rArr) {
     } else if ((lArr[lPtr] > rArr[rPtr]) || (typeof lArr[lPtr] === 'undefined')) {
       ans.push(rArr[rPtr]);
       rPtr += 1;
-    } else {
-      //&& !(rPtr >= rArr.length)
     }
+    return ans;
   }
-  return ans;
-
 }
 
 function removeChar(str, rmv) {
-
   for (let i = 0; i < rmv.length; i++) {
     let regex = new RegExp(rmv[i], "g");
     str = str.replace(regex, "");
   }
   return str;
-
 }
 
 function products(arr) {
-  let result = [...arr];
+  let result = [];
 
   for (let i = 0; i < arr.length; i++) {
+    result.push(1);
     for (let j = 0; j < arr.length; j++) {
       if (j !== i) {
-        result[i] = arr[i] * arr[j];
+        result[i] *= arr[j];
       }
     }
   }
   return result;
 }
+
+
+
 
 function main() {
   console.log(URLify("tauhida parveen"));
