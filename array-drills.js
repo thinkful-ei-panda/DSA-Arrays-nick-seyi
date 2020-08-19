@@ -61,14 +61,25 @@ function removeChar(str, rmv) {
 }
 
 function products(arr) {
-  let result = [...arr];
+  let result = [];
+  let count = 0
+  let track = 0
+  let trace = 0
+  let acc = 1
 
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
-      if (j !== i) {
-        result[i] = arr[i] * arr[j];
-      }
+  while (count < arr.length * (arr.length + 1)) {
+      console.log(count)
+    if (track === arr.length) {
+        result[trace] = acc
+        track = 0
+        trace += 1
+        acc = 1
     }
+    if (trace !== track) {
+        acc *= arr[track]
+      }
+      track += 1
+      count +=1
   }
   return result;
 }
@@ -92,7 +103,7 @@ function main() {
 
 
   console.log(products([1, 3, 9, 4])); //Output:[108, 36, 12, 27]
-
+  console.log(products([4, 9, 3, 1,2]));
 }
 
 main();
