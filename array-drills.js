@@ -84,6 +84,11 @@ function products(arr) {
   return result;
 }
 
+
+function twoD(arr) {
+    let firstRow = false
+}
+
 function main() {
   console.log(URLify("tauhida parveen"));
   console.log(URLify("www.thinkful.com /tauh ida parv een"));
@@ -104,6 +109,12 @@ function main() {
 
   console.log(products([1, 3, 9, 4])); //Output:[108, 36, 12, 27]
   console.log(products([4, 9, 3, 1,2]));
+
+  console.log(twoD([[1,0,1,1,0],
+    [0,1,1,1,0],
+    [1,1,1,1,1],
+    [1,0,1,1,1],
+    [1,1,1,1,1]]))
 }
 
 main();
