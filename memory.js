@@ -1,4 +1,4 @@
- class Memory {
+export default class Memory {
   constructor() {
     this.memory = new Float64Array(1024);
     this.head = 0;
@@ -43,5 +43,3 @@
     this.memory[ptr] = value;
   }
 }
-
-export {Memory}
