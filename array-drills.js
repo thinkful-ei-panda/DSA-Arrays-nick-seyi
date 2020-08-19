@@ -67,28 +67,92 @@ function products(arr) {
   return result;
 }
 
+function twoDArray(arr) {
+  let zeroRows = [];
+  let zeroCols = [];
 
+  for (let i = 0; i < arr.length; i++)
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[i][j] === 0) {
+        if (!zeroRows.includes(i))
+          zeroRows.push(i);
+        if (!zeroCols.includes(j))
+          zeroCols.push(j);
+      }
+    }
+
+  for (let i = 0; i < arr.length; i++)
+    for (let j = 0; j < arr.length; j++)
+      if (zeroRows.includes(i) || zeroCols.includes(j))
+        arr[i][j] = 0;
+
+  return arr;
+}
+
+function stringRotation(strA, strB) {
+  if (strA.length !== strB.length)
+    return false;
+
+  let matches = [];
+  let result = false;
+
+  for (let i = 0; i < strB.length; i++)
+    if (strB[i] === strA[0])
+      matches.push({
+        index: i,
+        rotation: true,
+      });
+
+  for (let i = 0; i < strA.length; i++) {
+    matches.forEach(match => {
+      if (match.rotation === true) {
+        if (match.index + i >= strA.length)
+          match.index = -i;
+        if (strA[i] !== strB[match.index + i]) {
+          match.rotation = false;
+        }
+      }
+    });
+  }
+
+  matches.forEach(match => {
+    if (match.rotation)
+      result = true;
+  });
+
+  return result;
+}
 
 
 function main() {
-  console.log(URLify("tauhida parveen"));
-  console.log(URLify("www.thinkful.com /tauh ida parv een"));
-  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  console.log(removeAll(arr));
+  // console.log(URLify("tauhida parveen"));
+  // console.log(URLify("www.thinkful.com /tauh ida parv een"));
+  // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // console.log(removeAll(arr));
 
-  let arr2 = [4, 6, -3, 5, -2, 1];
-  console.log(maxSum(arr2));
+  // let arr2 = [4, 6, -3, 5, -2, 1];
+  // console.log(maxSum(arr2));
 
-  let arr3 = [1, 3, 6, 8, 11];
-  let arr4 = [2, 3, 5, 8, 9, 10];
-  console.log(mergeArray(arr3, arr4));
-  console.log(mergeArray(arr4, arr3));
+  // let arr3 = [1, 3, 6, 8, 11];
+  // let arr4 = [2, 3, 5, 8, 9, 10];
+  // console.log(mergeArray(arr3, arr4));
+  // console.log(mergeArray(arr4, arr3));
 
-  let str = 'Battle of the Vowels: Hawaii vs. Grozny';
-  console.log(removeChar(str, 'aeiou'));
+  // let str = 'Battle of the Vowels: Hawaii vs. Grozny';
+  // console.log(removeChar(str, 'aeiou'));
 
 
-  console.log(products([1, 3, 9, 4])); //Output:[108, 36, 12, 27]
+  // console.log(products([1, 3, 9, 4])); //Output:[108, 36, 12, 27]
+
+  // const mat = [
+  //   [1, 0, 1, 1, 0],
+  //   [0, 1, 1, 1, 0],
+  //   [1, 1, 1, 1, 1],
+  //   [1, 0, 1, 1, 1],
+  //   [1, 1, 1, 1, 1]];
+  // console.log(twoDArray(mat));
+
+  console.log(stringRotation('amazon', 'azonam'));
 
 }
 
