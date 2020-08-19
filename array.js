@@ -1,10 +1,10 @@
-import Memory from './memory.js';
+import Memory from './Memory.js';
 
 class Array {
   constructor() {
     this.length = 0;
     this._capacity = 0;
-    this.ptr = memory.allocate(this.length);
+    this.ptr = Memory.allocate(this.length);
   }
 
   push(value) {
@@ -12,7 +12,7 @@ class Array {
       this._resize((this.length + 1) * Array.SIZE_RATIO);
     }
 
-    memory.set(this.ptr + this.length, value);
+    Memory.set(this.ptr + this.length, value);
     this.length++;
 
     // this._resize(this.length + 1);
@@ -22,12 +22,12 @@ class Array {
 
   _resize(size) {
     const oldPtr = this.ptr;
-    this.ptr = memory.allocate(size);
+    this.ptr = Memory.allocate(size);
     if (this.ptr === null) {
       throw new Error('Out of Memory');
     }
-    memory.copy(this.ptr, oldPtr, this.length);
-    memory.free(oldPtr);
+    Memory.copy(this.ptr, oldPtr, this.length);
+    Memory.free(oldPtr);
     this._capacity = size;
   }
 
@@ -35,14 +35,14 @@ class Array {
     if (index < 0 || index >= this.length) {
       throw new Error('Index error');
     }
-    return memory.get(this.ptr + index);
+    return Memory.get(this.ptr + index);
   }
 
   pop() {
     if (this.length == 0) {
       throw new Error('Index error');
     }
-    const value = memory.get(this.ptr + this.length - 1);
+    const value = Memory.get(this.ptr + this.length - 1);
     this.length--;
     return value;
   }
@@ -56,8 +56,8 @@ class Array {
       this._resize((this.length + 1) * Array.SIZE_RATIO);
     }
 
-    memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
-    memory.set(this.ptr + index, value);
+    Memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
+    Memory.set(this.ptr + index, value);
     this.length++;
   }
 
@@ -65,7 +65,7 @@ class Array {
     if (index < 0 || index >= this.length) {
       throw new Error('Index error');
     }
-    memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
+    Memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
     this.length--;
   }
 }
@@ -76,6 +76,26 @@ function main() {
 
   arr.push(3);
   console.log(arr);
+
+  arr.push(5);
+  arr.push(15);
+  arr.push(19);
+  arr.push(45);
+  arr.push(10);
+  arr.pop();
+  arr.pop();
+  arr.pop();
+  console.log(arr);
+
+  console.log(arr.get(0))
+
+  arr.pop();
+  arr.pop();
+  arr.pop();
+  arr.push("tauhida");
+  console.log(arr.get(0))
+  console.log(arr);
+
 }
 
 main();
