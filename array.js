@@ -1,4 +1,4 @@
-import {Memory} from './Memory.js';
+import Memory from './memory.js';
 
 class Array {
   constructor() {
