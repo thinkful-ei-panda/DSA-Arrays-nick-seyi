@@ -67,6 +67,27 @@ function products(arr) {
   return result;
 }
 
+// optimized solution for products
+function products2(arr) {
+  let results = [];
+  for (let i in arr) {
+    let arr = arr.splice(i, 1);
+    results.push(helper(arr));
+  }
+  return results;
+}
+
+function helper(arr) {
+  return arr.reduce((a, b) => a * b, 1);
+}
+
+//      USE THIS TO SOLVE 11 AGAIN
+// for (int i = 0; i < Myarray.length*Myarray.length; i++) {
+//   int row = i / Myarray.length;
+//   int col = i % Myarray.length;
+//   System.out.println(Myarray[row][col]);
+// }
+
 function twoDArray(arr) {
   let zeroRows = [];
   let zeroCols = [];
